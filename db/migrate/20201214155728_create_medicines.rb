@@ -1,5 +1,5 @@
 class CreateMedicines < ActiveRecord::Migration[6.0]
-  def change
+  def up
     create_table :medicines do |t|
       t.string :name
       t.integer :status
@@ -8,4 +8,9 @@ class CreateMedicines < ActiveRecord::Migration[6.0]
       t.timestamps
     end
   end
+
+  def down
+    drop_table :medicines
+  end
+  
 end
