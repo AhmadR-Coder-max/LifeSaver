@@ -13,11 +13,14 @@
 ActiveRecord::Schema.define(version: 2020_12_14_155728) do
 
   create_table "medicines", force: :cascade do |t|
-    t.string "name"
-    t.integer "status"
-    t.boolean "active"
+    t.string "medicine_code", null: false
+    t.string "name", null: false
+    t.integer "med_type", default: 0
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["medicine_code"], name: "index_medicines_on_medicine_code", unique: true
+    t.index ["name", "med_type"], name: "index_medicines_on_name_and_med_type", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,6 +29,8 @@ ActiveRecord::Schema.define(version: 2020_12_14_155728) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "phone_number"
+    t.string "cnic"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
