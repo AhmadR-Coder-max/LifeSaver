@@ -1,6 +1,6 @@
 
 class Medicine < ApplicationRecord
-  enum med_type: {tablet: 0, capsol: 1, syrpe: 2 }
+  enum med_type: {tablet: 0, capsule: 1, syrup: 2 }
   def self.seed
     require 'csv'
     table = CSV.parse(File.read(Rails.root.to_s + '/files/drugs_names.csv'), headers: true)
