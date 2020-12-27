@@ -8,9 +8,13 @@
   </datalist>
   <input  autoComplete="on" oninput="getMed(this)" list="medicine" placeholder="Search medicine by name" class="search-med">
 </div>
-
-
 <script>
+    var longitude = '';
+    var latitude = '';
+    function showPosition(position) {
+        latitude  = position.coords.latitude;
+        longitude = position.coords.longitude;
+    }
     function getMed(name) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -25,7 +29,9 @@
                 my_list.innerHTML = str;
             }
         };
-        xhttp.open("GET", "/medicine/list?name="+ name.value, true);
+        navigator.geolocation.getCurrentPosition(showPosition);
+
+        xhttp.open("GET", "/medicine/list?name="+ name.value + '&long=' + longitude + '&lat=' + latitude, true);
         xhttp.send();
     }
 </script>
