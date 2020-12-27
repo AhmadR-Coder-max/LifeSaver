@@ -1,5 +1,6 @@
 class MedicineController < ApplicationController
   def index
+    # Geocoder::Calculations.distance_between([31.506432, 74.32437759999999], [32.1270461, 74.210813])
   end
 
   def list
